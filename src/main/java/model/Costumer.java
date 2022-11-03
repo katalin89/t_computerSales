@@ -1,18 +1,24 @@
 package model;
 
+import java.util.Objects;
+
 public class Costumer {
     private int id;
-    private  int computerId;
-    private  String type;
-    private String charge;
-    private  String description;
+    private String name;
+    private String mobile;
+    private String email;
+    private String address;
+    private String password;
+    private String userName;
 
-    public  Costumer(int id,int computerId,String type,String charge,String description){
-        this.id=id;
-        this.computerId=computerId;
-        this.type=type;
-        this.charge=charge;
-        this.description=description;
+    public Costumer(int id, String name, String mobile, String email, String address, String password, String userName) {
+        this.id = id;
+        this.name = name;
+        this.mobile = mobile;
+        this.email = email;
+        this.address = address;
+        this.password = password;
+        this.userName = userName;
     }
 
     public int getId() {
@@ -23,49 +29,65 @@ public class Costumer {
         this.id = id;
     }
 
-    public int getComputerId() {
-        return computerId;
+    public String getName() {
+        return name;
     }
 
-    public void setComputerId(int computerId) {
-        this.computerId = computerId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
-    public String getCharge() {
-        return charge;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCharge(String charge) {
-        this.charge = charge;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getDescription() {
-        return description;
+    public String getAddress() {
+        return address;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAddress(String address) {
+        this.address = address;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     @Override
-    public String toString(){
-        String text="";
-        text+=id+","+computerId+","+type+","+charge+","+description;
-        return  text;
-
+    public String toString() {
+        return "Costumer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", password='" + password + '\'' +
+                ", userName='" + userName + '\'' +
+                '}';
     }
 
-    @Override
-
-    public  boolean equals(Object o){
-        Costumer costumer=(Costumer) o;
-        return  costumer.computerId==this.computerId;
-    }
 }

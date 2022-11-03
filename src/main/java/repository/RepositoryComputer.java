@@ -29,7 +29,7 @@ public class RepositoryComputer extends Repository {
     }
 
 
-    public void stergeBookById(int id) {
+    public void stergComputerById(int id) {
 
         String text = String.format("delete from computer where id= %d ", id);
         executeStatement(text);
@@ -38,7 +38,7 @@ public class RepositoryComputer extends Repository {
     public void updatePrice(int id, int price) {
 
         String update = "";
-        update += String.format("update computer set price='%s'", price);
+        update += String.format("update computer set price=%d", price);
         update += String.format("where id=%d", id);
         executeStatement(update);
 
@@ -91,7 +91,7 @@ public class RepositoryComputer extends Repository {
     }
 
     //Nu s-a gasit cartea
-    private ResultSet findBook(int id) {
+    private ResultSet findComputer(int id) {
         executeStatement(String.format("select * from computer where id=%d", id));
         try {
             return statment.getResultSet();
@@ -102,8 +102,8 @@ public class RepositoryComputer extends Repository {
     }
 
     //nu s-a gasit
-    public Computer findBooks(int id) throws ComputerNotFoundException {
-        ResultSet set = findBook(id);
+    public Computer findComputers(int id) throws ComputerNotFoundException {
+        ResultSet set = findComputer(id);
         List<Computer> computers = new ArrayList<>();
         try {
             while (set.next()) {
