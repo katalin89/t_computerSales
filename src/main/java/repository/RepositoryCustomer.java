@@ -93,21 +93,12 @@ public class RepositoryCustomer extends Repository {
         return customer.get(0);
     }
 
-    //Nu s-a gasit cartea
-    private ResultSet findCostumer(int id) {
-        executeStatement(String.format("select * from customer where id=%d", id));
-        try {
-            return statment.getResultSet();
-        } catch (Exception e) {
-            System.out.println("Nu s-a executat schita");
-            return null;
-        }
-    }
 
 
 
 
-    public List<Costumer> allCostumers(int id) {
+
+    public List<Costumer> allCostumers() {
         ResultSet set = allCustomer();
         List<Costumer> customers = new ArrayList<>();
         try {
@@ -120,5 +111,94 @@ public class RepositoryCustomer extends Repository {
         return customers;
 
     }
+    private ResultSet findCustomerName(String name){
+        executeStatement(String.format("select * from customer where name ='%s'",name));
+        try{
+            return statment.getResultSet();
+        }catch (Exception e){
+            System.out.println("Nu s-a executat schita");
+            return  null;
+        }
+    }
+
+    public  Costumer findCustomers(String name) throws  ComputerFoundException{
+        ResultSet set=findCustomerName(name);
+        List<Costumer> customer=new ArrayList<>();
+        try{
+            while(set.next()){
+       //  public Costumer(int id, String name, String mobile, String email, String address, String password, String userName) {
+
+                    customer.add(new Costumer(set.getInt(1),set.getString(2),set.getString(3),set.getString(4),set.getString(5),set.getString(6),set.getString(7)));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        if(customer.size()!=0){
+            throw new ComputerFoundException("Computerul exista deja");
+        }
+        return  customer.get(0);
+    }
+
+    //Nu s-a gasit customer
+    private ResultSet findCostumer(int id){
+        executeStatement(String.format("select * from customer where id=%d",id));
+        try{
+            return  statment.getResultSet();
+        }catch(Exception e){
+            System.out.println("Nu s-a executat schita");
+            return  null;
+        }
+    }
 
 }
+
+/*
+
+
+    //Nu s-a gasit cartea
+    private ResultSet findCostumer(int id) {
+        executeStatement(String.format("select * from customer where id=%d", id));
+        try {
+            return statment.getResultSet();
+        } catch (Exception e) {
+            System.out.println("Nu s-a executat schita");
+            return null;
+        }
+    }
+
+    ----
+
+        private ResultSet findCostumerName(String name) {
+        executeStatement(String.format("select * from customer where name='%s'", name));
+        try {
+            return statment.getResultSet();
+        } catch (Exception e) {
+            System.out.println("Nu s-a executat schita");
+            return null;
+        }
+    }
+
+       //dupa nume
+
+    public Costumer findCostumers(String name) throws ComputerFoundException {
+        ResultSet set = findCostumerName(name);
+        List<Costumer> customer = new ArrayList<>();
+        try {
+            while (set.next()) {
+
+                customer.add(new Costumer(set.getInt(1), set.getString(2), set.getString(3), set.getString(4), set.getString(5), set.getString(6),set.getString(7)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (customer.size() != 0) {
+            throw new ComputerFoundException("Cartea exista deja");
+        }
+        return customer.get(0);
+    }
+
+
+
+
+*/

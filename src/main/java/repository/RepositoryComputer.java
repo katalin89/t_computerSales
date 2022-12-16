@@ -21,8 +21,8 @@ public class RepositoryComputer extends Repository {
 
         String insertTo = "";
 
-        insertTo += " insert into computer(type,price,description,company,costumerId)  values (";
-        insertTo += String.format("'%s',%d,'%s','%s',%d", computer.getType(), computer.getPrice(), computer.getDescription(), computer.getCompany(), computer.getCostumerId());
+        insertTo += " insert into computer(type,price,description,company,customer_id)  values (";
+        insertTo += String.format("'%s','%s','%s','%s',%d", computer.getType(), computer.getPrice(), computer.getDescription(), computer.getCompany(), computer.getCostumerId());
         insertTo += ")";
         executeStatement(insertTo);
 
@@ -39,7 +39,7 @@ public class RepositoryComputer extends Repository {
 
         String update = "";
         update += String.format("update computer set price=%d", price);
-        update += String.format("where id=%d", id);
+        update += String.format(" where id=%d", id);
         executeStatement(update);
 
 

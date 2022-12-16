@@ -1,5 +1,6 @@
 package repository;
 
+import exceptions.ComputerFoundException;
 import model.Costumer;
 import org.junit.jupiter.api.Test;
 
@@ -43,10 +44,18 @@ repositoryCostumer.updateAdress(10,"test");
 @Test
     public void allCustomers(){
         RepositoryCustomer repositoryCostumer=new RepositoryCustomer();
-        List<Costumer> customers=repositoryCostumer.allCostumers(1);
+        List<Costumer> customers=repositoryCostumer.allCostumers();
         for(Costumer c:customers){
             System.out.println(c.toString());
         }
+    }
+
+    @Test
+    void findByName() throws ComputerFoundException {
+        RepositoryCustomer repositoryCostumer=new RepositoryCustomer();
+
+        repositoryCostumer.findCustomers("accesSales");
+
     }
 
 

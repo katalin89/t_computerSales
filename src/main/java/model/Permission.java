@@ -10,7 +10,8 @@ public class Permission {
     public  Permission(int id,int roleId,String title,String module, String description){
         this.id=id;
         this.roleId=roleId;
-        this.title=module;
+        this.title=title;
+        this.module=module;
         this.description=description;
     }
 

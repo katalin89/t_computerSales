@@ -14,8 +14,8 @@ public class RepositoryParts extends  Repository {
 
     public void insertParts(Parts parts){
         String insertTo="";
-        insertTo+="insert into parts( name, description, type) values(";
-        insertTo+= String.format("'%s','%s','%s",parts.getName(),parts.getDescription(),parts.getType());
+        insertTo+="insert into parts( name, description, type)  values(";
+        insertTo+= String.format("'%s','%s','%s'",parts.getName(),parts.getDescription(),parts.getType());
         insertTo+=")";
         executeStatement(insertTo);
    }
@@ -26,11 +26,15 @@ public class RepositoryParts extends  Repository {
    }
 
    public void updateDescription(int id,String description){
-        String update="";
-        update+=String.format("update parts set decription='%s'",description);
-        update+=String.format("where id=%d",id);
-        executeStatement(update);
+
+
+       String update = "";
+       update += String.format("update parts set description='%s'", description);
+       update += String.format(" where id=%d", id);
+       executeStatement(update);
    }
+
+
 
    public void deleteParts(String name){
         String delete="";
@@ -47,7 +51,7 @@ public class RepositoryParts extends  Repository {
         }
    }
 
-   public List<Parts> allParts(int id){
+   public List<Parts> allParts(){
         ResultSet set=allPart();
         List<Parts> parts=new ArrayList<>();
         try{
@@ -61,11 +65,4 @@ public class RepositoryParts extends  Repository {
    }
 }
 
-/*
 
-
-
-
-
-
-}*/
